@@ -1,1 +1,14 @@
 
+Active Deals = COUNTROWS(FILTER(Deals, Deals[Status] = "Active"))
+
+Closed Won = COUNTROWS(FILTER(Deals, Deals[Status] = "Won"))
+
+Closed Lost = COUNTROWS(FILTER(Deals, Deals[Status] = "Lost"))
+
+Win Rate = DIVIDE([Closed Won], [Closed Won] + [Closed Lost], 0)
+
+Loss Rate = DIVIDE([Closed Lost], [Closed Won] + [Closed Lost], 0)
+
+Won Amount = CALCULATE(SUM(Deals[Amount]), Deals[Status] = "Won")
+
+Active Amount = CALCULATE(SUM(Deals[Amount]), Deals[Status] = "Active")
